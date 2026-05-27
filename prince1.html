@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prince | Video Editor & Graphic Designer</title>
+    
+    <!-- Icons and Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #0b0b0b;
+            --card-bg: #161616;
+            --accent: #0ef; /* Neon Cyan */
+            --text: #ffffff;
+            --dim-text: #b0b0b0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        /* --- Header --- */
+        header {
+            position: fixed;
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(11, 11, 11, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo { font-family: 'Syncopate', sans-serif; font-size: 22px; color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+        
+        .nav-links a { color: white; text-decoration: none; margin-left: 30px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10%;
+        }
+
+        .hero-text h3 { font-size: 28px; }
+        .hero-text h1 { 
+            font-family: 'Syncopate', sans-serif;
+            font-size: 60px; 
+            color: var(--accent); 
+            line-height: 1.1; 
+            margin: 10px 0;
+        }
+        .hero-text h2 { font-size: 30px; color: #4ade80; margin-bottom: 20px; }
+        .hero-text p { color: var(--dim-text); max-width: 500px; margin-bottom: 30px; }
+
+        /* Hero Image Glow */
+        .hero-img {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            box-shadow: 0 0 50px var(--accent);
+            overflow: hidden;
+        }
+        .hero-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* --- Showreel (The Main Video) --- */
+        .showreel { padding: 100px 10%; text-align: center; }
+        .video-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            margin: 40px auto;
+            border: 2px solid var(--accent);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 238, 255, 0.2);
+        }
+        .video-wrapper video { width: 100%; display: block; }
+
+        /* --- Filterable Portfolio --- */
+        .portfolio { padding: 80px 10%; }
+        .filter-buttons { text-align: center; margin-bottom: 50px; }
+        .filter-btn {
+            background: none; border: 1px solid var(--accent); color: var(--accent);
+            padding: 10px 25px; margin: 5px; cursor: pointer; border-radius: 30px;
+            font-weight: 600; transition: 0.3s;
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent); color: black; }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .item { 
+            background: var(--card-bg); border-radius: 15px; overflow: hidden; 
+            border: 1px solid #333; transition: 0.4s; 
+        }
+        .item:hover { transform: translateY(-10px); border-color: var(--accent); }
+
+        .item-media { width: 100%; height: 200px; overflow: hidden; position: relative; }
+        .item-media video, .item-media img { width: 100%; height: 100%; object-fit: cover; }
+
+        .item-info { padding: 20px; }
+        .item-info h4 { color: var(--accent); font-size: 18px; margin-bottom: 5px; }
+        .item-info p { font-size: 14px; color: var(--dim-text); }
+
+        /* --- Tools & Software Icons --- */
+        .skills { padding: 80px 10%; background: #080808; text-align: center; }
+        .skill-icons { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
+        .icon-box { font-size: 40px; color: var(--dim-text); transition: 0.3s; }
+        .icon-box:hover { color: var(--accent); transform: scale(1.2); }
+        .icon-box span { display: block; font-size: 12px; margin-top: 10px; }
+
+        /* --- Contact Section --- */
+        .contact { padding: 100px 10%; text-align: center; }
+        .contact-form { max-width: 600px; margin: 40px auto; display: flex; flex-direction: column; gap: 15px; }
+        .contact-form input, .contact-form textarea {
+            background: #1a1a1a; border: 1px solid #333; padding: 15px; color: white; border-radius: 8px; outline: none;
+        }
+        .contact-form input:focus { border-color: var(--accent); }
+        .submit-btn { 
+            background: var(--accent); color: black; padding: 15px; 
+            border: none; border-radius: 8px; font-weight: 700; cursor: pointer;
+        }
+
+        footer { padding: 40px; text-align: center; color: var(--dim-text); border-top: 1px solid #222; }
+
+        /* --- Mobile Responsive --- */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column-reverse; text-align: center; padding-top: 100px; }
+            .hero-img { width: 280px; height: 280px; }
+            .hero-text h1 { font-size: 40px; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">PRINCE CREATIVE</div>
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#showreel">Showreel</a>
+            <a href="#portfolio">Work</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-text">
+            <h3>Hello, It's Me</h3>
+            <h1>PRINCE MANDL</h1>
+            <h2>I'm a <span>Video Editor</span></h2>
+            <p>Specializing in cinematic video editing, motion graphics, and high-impact graphic design. Bringing stories to life through visual excellence.</p>
+            
+            <div class="social-links" style="margin-bottom: 20px;">
+                <a href="#" style="color: var(--accent); font-size: 24px; margin-right: 20px;"><i class="fab fa-instagram"></i></a>
+                <a href="#" style="color: var(--accent); font-size: 24px; margin-right: 20px;"><i class="fab fa-youtube"></i></a>
+                <a href="#" style="color: var(--accent); font-size: 24px;"><i class="fab fa-behance"></i></a>
+            </div>
+            
+            <button class="submit-btn" style="width: 200px;">Hire Me</button>
+        </div>
+        <div class="hero-img">
+            <img src="prince.png" alt="Prince Profile">
+        </div>
+    </section>
+
+    <!-- Showreel -->
+    <section class="showreel" id="showreel">
+        <h2 style="font-size: 40px; font-family: Syncopate;">2024 SHOWREEL</h2>
+        <div class="video-wrapper">
+            <!-- Replace with your main video link -->
+            <video controls poster="https://via.placeholder.com/1000x560">
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section class="portfolio" id="portfolio">
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterItems('all')">All Work</button>
+            <button class="filter-btn" onclick="filterItems('video')">Videos</button>
+            <button class="filter-btn" onclick="filterItems('design')">Graphics</button>
+        </div>
+
+        <div class="portfolio-grid">
+            <!-- Video Item -->
+            <div class="item video">
+                <div class="item-media">
+                    <video muted loop onmouseover="this.play()" onmouseout="this.pause()">
+                        <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="item-info">
+                    <h4>Travel Vlog Edit</h4>
+                    <p>Color grading & Cinematic Transitions</p>
+                </div>
+            </div>
+
+            <!-- Graphic Design Item -->
+            <div class="item design">
+                <div class="item-media">
+                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=500" alt="Logo Design">
+                </div>
+                <div class="item-info">
+                    <h4>Brand Identity</h4>
+                    <p>Logo & Visual Design for Tech Startup</p>
+                </div>
+            </div>
+
+            <!-- Video Item -->
+            <div class="item video">
+                <div class="item-media">
+                    <video muted loop onmouseover="this.play()" onmouseout="this.pause()">
+                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="item-info">
+                    <h4>Product Commercial</h4>
+                    <p>Motion Graphics & 3D Renders</p>
+                </div>
+            </div>
+
+            <!-- Graphic Design Item -->
+            <div class="item design">
+                <div class="item-media">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=500" alt="Poster Design">
+                </div>
+                <div class="item-info">
+                    <h4>Event Poster</h4>
+                    <p>Digital Art & Typography Design</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Skills -->
+    <section class="skills">
+        <h2 style="font-family: Syncopate;">CREATIVE TOOLS</h2>
+        <div class="skill-icons">
+            <div class="icon-box"><i class="fas fa-video"></i><span>Premiere Pro</span></div>
+            <div class="icon-box"><i class="fas fa-magic"></i><span>After Effects</span></div>
+            <div class="icon-box"><i class="fas fa-palette"></i><span>Photoshop</span></div>
+            <div class="icon-box"><i class="fas fa-pen-nib"></i><span>Illustrator</span></div>
+            <div class="icon-box"><i class="fas fa-camera"></i><span>Lightroom</span></div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <h2 style="font-size: 35px;">Let's Create <span>Something Great</span></h2>
+        <form class="contact-form">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea rows="5" placeholder="Project details (Video Editing, Logo, etc.)" required></textarea>
+            <button type="submit" class="submit-btn">Send Proposal</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Prince Creative | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Simple Filter Logic
+        function filterItems(category) {
+            const items = document.querySelectorAll('.item');
+            const buttons = document.querySelectorAll('.filter-btn');
+
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
